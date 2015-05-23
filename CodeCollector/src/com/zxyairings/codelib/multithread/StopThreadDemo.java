@@ -24,7 +24,7 @@ package com.zxyairings.codelib.multithread;
 
 可以使用Thread类提供的interrupt()方法，将线程从冻结状态强制恢复到运行状态中来，让线程具备cpu的执行资格。 
 
-当时强制动作会发生了InterruptedException，记得要处理
+当时强制动作会发生了InterruptedException，记得要处理，一般可以在这里改变标记。
 
 */
 class StopThread implements Runnable
@@ -76,7 +76,7 @@ class StopThreadDemo
 		{
 			if(++num==50)
 			{
-//				st.setFlag();//设置标记，使线程结束循环
+//				st.setFlag();//设置标记，使线程结束循环。但是如果处于冻结状态，这种方法无法结束线程。这时需要使用interrupt方法。
 				t1.interrupt();
 //				t2.interrupt();
 				break;
