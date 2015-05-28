@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- id 属于xml，可以被xml解析器解析，它不支持特殊字符，如果使用特殊字符要使用name 
+配置好bean后，这时这个bean就由Spring容器创建和维护
+我们要以后要使用这个bean，那么只需要从Spring容器获取就可以，而不用我们再创建这个bean了
+-->
+
+<bean id="personService" class="com.zxyairings.codelib.spring.impl.PersonServiceBean"></bean>
+
+</beans>
