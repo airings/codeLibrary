@@ -3,7 +3,7 @@ package com.zxyairings.codelib.javabean;
 import java.util.Date;
 
 public class ReflectPoint {
-	private Date birthday;
+	private Date birthday = new Date();//需要赋初值，否则BeanUtils调用get方法后在set时是空指针异常。
 	private int x;
 	private int y;
 	

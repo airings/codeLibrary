@@ -92,6 +92,7 @@ public class ReflectDemo {
 		
 		
 		//数组的反射：具有相同维度和元素类型的数组属于同一个类型，即具有相同的Class实例对象
+		System.out.println("***array's reflect***");
 		int [] a1 = new int[]{1,2,3};
 		int [] a2 = new int[4];
 		int[][] a3 = new int[2][3];
@@ -99,16 +100,16 @@ public class ReflectDemo {
 		System.out.println(a1.getClass() == a2.getClass());//true
 //		System.out.println(a1.getClass() == a4.getClass());//false
 //		System.out.println(a1.getClass() == a3.getClass());//false
-		System.out.println(a1.getClass().getName());
-		System.out.println(a1.getClass().getSuperclass().getName());
-		System.out.println(a4.getClass().getSuperclass().getName());
+		System.out.println(a1.getClass().getName());//可以参考getName的Api，有说明
+		System.out.println(a1.getClass().getSuperclass().getName());//Object
+		System.out.println(a4.getClass().getSuperclass().getName());//Object
 		
 		Object aObj1 = a1;
 		Object aObj2 = a4;
 		//Object[] aObj3 = a1; //基本类型int不是Objcet
 		Object[] aObj4 = a3;//int[] 是 Object
 		Object[] aObj5 = a4;
-		//总结：基本类型的一位数组可以被当做Object类型使用，不能当做Object[]类型使用，非基本类型的一位数组则都可以。
+		//总结：基本类型的一维数组可以被当做Object类型使用，不能当做Object[]类型使用，非基本类型的一位数组则都可以。
 		
 		
 		//由上面的引出的
@@ -117,10 +118,10 @@ public class ReflectDemo {
 		System.out.println(a4);
 		//Arrays.asList 方法处理int[] 和 String[] 时的差异
 		System.out.println(Arrays.asList(a1));//
-		System.out.println(Arrays.asList(a4));	
+		System.out.println(Arrays.asList(a4));
 		
 		//数组反射java.lang.reflect.Array
-		printObject(a4);
+		printObject(a1);
 		
 		printObject("xyz");
 		//?如何得到数组的类型？目前没有办法。需要去除每个元素对象，然后再对每个对象进行判断，因为其中每个具体元素的类型都可以不同：Object[] x = new Object[]{"abc",Integer.Max,'c'}

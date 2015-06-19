@@ -45,7 +45,7 @@ public class IntroSpectorComplexDemo {
 		BeanInfo beanInfo =  Introspector.getBeanInfo(pt1.getClass());
 		PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();//得到所有的属性
 		Object retVal = null;
-		for(PropertyDescriptor pd : pds){
+		for(PropertyDescriptor pd : pds){//遍历所有的属性
 			if(pd.getName().equals(propertyName))
 			{
 				Method methodGetX = pd.getReadMethod();

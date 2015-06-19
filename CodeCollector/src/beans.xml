@@ -1,14 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd">
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context    
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+           
+           <context:annotation-config></context:annotation-config> <!-- 这个配置隐式在spring容器中注册了多个对注释进行解析处理的处理器，这样就可以使用注解注入了。 -->
 
 <!-- id 属于xml，可以被xml解析器解析，它不支持特殊字符，如果使用特殊字符要使用name 
 配置好bean后，这时这个bean就由Spring容器创建和维护
 我们要以后要使用这个bean，那么只需要从Spring容器获取就可以，而不用我们再创建这个bean了
--->
 
-<bean id="personService" class="com.zxyairings.codelib.spring.impl.PersonServiceBean"></bean>
+Spring三种create bean 方式
+
+1.使用类构造器实例化
+<bean id=“orderService" class="cn.itcast.OrderServiceBean"/>
+2.使用静态工厂方法实例化
+<bean id="personService" class="cn.itcast.service.OrderFactory" factory-method="createOrder"/>
+public class OrderFactory {
+	public static OrderServiceBean createOrder(){
+		return new OrderServiceBean();
+	}
+}
+3.使用实例工厂方法实例化:
+<bean id="personServiceFactory" class="cn.itcast.service.OrderFactory"/>
+<bean id="personService" factory-bean="personServiceFactory" factory-method="createOrder"/>
+public class OrderFactory {
+	public OrderServiceBean createOrder(){
+		return new OrderServiceBean();
+	}
+}
+
+bean的作用域：
+默认是singleton，每次都返回同一个bean对象
+加上scope="prototype"，则每次都返回不同的bean对象
+
+bean的生命周期
+ * 单例bean是在容器实例化的时候被实例化的
+ * 如果scope是prototye那么该bean是在容器调用getBean方法的时候被实例化的
+ * 那么这种行为可以更改么？可以，通过bean/beans的属性lazy-init
+ * lazy-init 只对单例模式起作用，对 prototype 不起作用
+ * 单例bean：
+ * 		lazy-init="false":单例bean是在容器实例化的时候被实例化的
+ * 		lazy-init="true":单例bean是在容器实例化的时候被实例化的
+ 
+bean实例化之后可以指定一个init方法接着运行：首先实例化，再执行init方法。
+
+如果容器调用关闭方法，那么在关闭容器后会调用bean的destroy-method属性所指定的方法。
+
+依赖注入有三种方式：
+1.使用构造器注入
+2.使用属性setter方法注入
+3.使用Field注入（用于注解方式）
+注入依赖对象可以采用手工装配或自动装配
+
+手工装配依赖对象，在这种方式中又有两种编程方式
+1.在xml配置文件中，通过在bean节点下配置，
+2.在java代码中使用@Autowired或@Resource注解方式进行装配。这种方式可以使配置文件不那么臃肿。
+
+这两个注解的区别是：
+	@Autowired 默认按类型装配，
+	@Resource默认按名称装配，当找不到与名称匹配的bean才会按类型装配。
+
+
+-->
+<bean id="personDao" class="com.zxyairings.codelib.spring.impl.PersonDaoBean"></bean>
+<bean id="personDao2" class="com.zxyairings.codelib.spring.impl.PersonDaoBean"></bean>
+<bean id="personDao3" class="com.zxyairings.codelib.spring.impl.PersonDaoBean"></bean>
+<bean id="personDaoxxx" class="com.zxyairings.codelib.spring.impl.PersonDaoBean"></bean>
+<bean id="personService" class="com.zxyairings.codelib.spring.impl.PersonServiceBean" lazy-init="false" init-method="init" destroy-method="destroy">
+  <property name="personDao" ref="personDao"></property>
+  <constructor-arg index="0" type="com.zxyairings.codelib.spring.PersonDao" ref="personDao2"></constructor-arg>
+  <constructor-arg index="1" value="itcast2"></constructor-arg>
+  
+    <!-- 通过内部bean的方式也是可以注入的 
+      <property name="personDao">
+         <bean class="com.zxyairings.codelib.spring.impl.PersonDaoBean"/>
+     </property>  -->
+     
+     <property name="name" value="itcast"></property>
+     <property name="id" value="88"></property>
+     
+     <!-- 装配集合类型的属性 -->
+     <property name="sets"> <!-- 默认注入的是java.util.LinkedHashSet -->
+     	<set>
+     		<value>first</value>
+     		<value>second</value>
+     		<value>third</value>
+     	</set>
+     </property>
+     
+     <property name="lists"> <!-- 默认注入的是java.util.ArrayList -->
+     	<list>
+     		<value>first-list</value>
+     		<value>second-list</value>
+     		<value>third-list</value>
+     	</list>
+     </property>
+     
+     <property name="properties">
+     	<props>
+     		<prop key="key1">value1</prop>
+     		<prop key="key2">value2</prop>
+     		<prop key="key3">value3</prop>
+     	</props>
+     </property>
+     
+     <property name="maps"> <!-- 默认注入的是java.util.LinkedHashMap -->
+     	<map>
+     		<entry key="key1-map" value="value1-map"></entry>
+     		<entry key="key2-map" value="value2-map"></entry>
+     		<entry key="key3-map" value="value3-map"></entry>
+     		
+     	</map>
+     </property>
+</bean>
+<!-- <bean id="personService" class="com.zxyairings.codelib.spring.impl.PersonServiceBean" scope="prototype"></bean> -->
+<bean id="personService2" class="com.zxyairings.codelib.spring.impl.PersonServiceBeanFactory" 
+          factory-method="createPersonServiceBean"/>
+<bean id="personServiceFactory" class="com.zxyairings.codelib.spring.impl.PersonServiceBeanFactory"/>
+<bean id="personService3" factory-bean="personServiceFactory" factory-method="createPersonServiceBean2"/>
+
 
 </beans>

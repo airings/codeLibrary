@@ -3,8 +3,6 @@ package com.zxyairings.codelib.collections;
 
 import java.util.*;
 
-import com.zxyairings.codelib.generic.Person;
-
 /*
 将自定义对象作为元素存到ArrayList集合中，并去除重复元素。
 
