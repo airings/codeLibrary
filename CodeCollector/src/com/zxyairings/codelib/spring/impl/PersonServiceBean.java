@@ -10,6 +10,12 @@ import javax.annotation.Resource;
 import com.zxyairings.codelib.spring.PersonDao;
 import com.zxyairings.codelib.spring.PersonService;
 
+/*
+这两个注解的区别是：
+@Autowired 默认按类型装配，
+@Resource默认按名称装配，当找不到与名称匹配的bean才会按类型装配。
+*/
+
 public class PersonServiceBean implements PersonService {
 	private PersonDao personDao;
 	private String name;

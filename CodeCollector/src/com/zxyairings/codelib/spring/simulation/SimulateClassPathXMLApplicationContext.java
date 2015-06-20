@@ -10,6 +10,7 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,15 +26,76 @@ import java.util.Map;
 public class SimulateClassPathXMLApplicationContext {
 //	可以配置多个bean
 	private List<BeanDefinition> beanDefinitions = new ArrayList<BeanDefinition>();
-	private Map<String, Object> singletonsMap = new HashMap<String, Object>();
+	private Map<String, Object> singletonsMap = new HashMap<String, Object>();//所有的bean对象
 	
 	public SimulateClassPathXMLApplicationContext(String filename) {
 		this.readXML(filename);
 		this.instanceBeans();
+		this.annotationInject();
 		this.insertObject();//注入对象
 	}
 	
-//	为bean对象的属性注入值
+	private void annotationInject() {
+		for(String beanName : singletonsMap.keySet()){
+			Object bean = singletonsMap.get(beanName);
+			if(bean!=null){
+				try {
+					PropertyDescriptor[] ps = Introspector.getBeanInfo(bean.getClass()).getPropertyDescriptors();
+					for (PropertyDescriptor propertyDescriptor : ps) {
+						Method setter = propertyDescriptor.getWriteMethod();//获取属性的setter方法
+						if(setter!=null && setter.isAnnotationPresent(ItcastResource.class)){
+							ItcastResource resource = setter.getAnnotation(ItcastResource.class);
+							Object value = null;
+							if(resource.name() != null && !"".equals(resource.name())){
+								value = singletonsMap.get(resource.name());
+							}else {
+								value = singletonsMap.get(propertyDescriptor.getName());
+								if (value == null) {
+									for (String key : singletonsMap.keySet()) {
+										if (propertyDescriptor.getPropertyType().isAssignableFrom(singletonsMap.get(key).getClass())) {
+											value = singletonsMap.get(key);
+											break;
+										}
+									}
+								}
+							}
+							setter.setAccessible(true);
+							setter.invoke(bean, value);//把引用对象注入到属性
+						}
+					}
+					
+					Field[] fileds = bean.getClass().getDeclaredFields();
+					for (Field field : fileds) {
+						if(field.isAnnotationPresent(ItcastResource.class)){
+							ItcastResource resource = field.getAnnotation(ItcastResource.class);
+							Object value = null;
+							if(resource.name() != null && !"".equals(resource.name())){
+								value = singletonsMap.get(resource.name());
+							}else {
+								value = singletonsMap.get(field.getName());
+								if (value == null) {
+									for (String key : singletonsMap.keySet()) {
+										if (field.getType().isAssignableFrom(singletonsMap.get(key).getClass())) {
+											value = singletonsMap.get(key);
+											break;
+										}
+									}
+								}
+							}
+							field.setAccessible(true);
+							field.set(bean, value);
+						}
+					}
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
+
+	//	为bean对象的属性注入值
 	private void insertObject() {
 		for(BeanDefinition beanDefinition : beanDefinitions){
 			Object bean = singletonsMap.get(beanDefinition.getId());

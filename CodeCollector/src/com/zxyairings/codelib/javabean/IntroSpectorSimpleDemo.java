@@ -41,7 +41,21 @@ getUPS的属性名是什么？-> UPS
 1. 在Java EE开发中，经常要使用到JavaBean。很多环境就要求按JavaBean方式进行操作，别人都这么用和要求这么做，那你就没什么挑选的余地！
 2. JDK中提供了对JavaBean进行操作的一些API，这套API就称为内省。如果要你自己去通过getX方法来访问私有的x，怎么做，有一定难度吧？用内省这套api操作JavaBean比用普通类的方式更方便。
  *
+ *
+ * IntroSpectorSimpleDemo 是使用内省的简单方法
+ * 
+ * IntroSpectorComplexDemo 是使用内省的复杂方法
+ * 		采用遍历BeanInfo的所有属性方式来查找和设置某个RefectPoint对象的x属性。
+ * 		在程序中把一个类当作JavaBean来看，就是调用IntroSpector.getBeanInfo方法， 
+ * 		得到的BeanInfo对象封装了把这个类当作JavaBean看的结果信息。
+ * 
+ * 如果是想得到javabean的某一个属性的值就使用简单方法IntroSpectorSimpleDemo
+ * 如果是想得到一个javabean所有属性的值就是用复杂方法IntroSpectorComplexDemo，因为IntroSpector.getBeanInfo返回一个属性数组，我们需要遍历它找到我们要德属性。
+ * 
+ * 在实际工作中，BeanUtils比内省更常用，要熟练掌握。内省只要见识过，知道就可以了。
+ *
  */
+
 public class IntroSpectorSimpleDemo {
 	
 	public static void main(String[] args) throws Exception {
@@ -61,7 +75,8 @@ public class IntroSpectorSimpleDemo {
 		setProperties(pt1, propertyName, value);
 		System.out.println(pt1.getX());
 	}
-
+	
+	//内省方式得到x的set方法
 	private static void setProperties(Object pt1, String propertyName,
 			Object value) throws IntrospectionException,
 			IllegalAccessException, InvocationTargetException {
@@ -70,6 +85,7 @@ public class IntroSpectorSimpleDemo {
 		methodSetX.invoke(pt1,value);//调用该set方法
 	}
 
+	//内省方式得到x的get方法
 	private static Object getProperty(Object pt1, String propertyName)
 			throws IntrospectionException, IllegalAccessException,
 			InvocationTargetException {
