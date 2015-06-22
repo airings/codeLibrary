@@ -1,0 +1,10 @@
+使用Spring+JDBC集成步骤如下:
+1.配置数据源,如:
+ <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="org.gjt.mm.mysql.Driver"/>
+    <property name="url" value="jdbc:mysql://localhost:3306/itcast?useUnicode=true&amp;characterEncoding=UTF-8"/>
+    <property name="username" value="root"/>
+    <property name="password" value="123456"/>
+     .....略
+  </bean>
+2.配置事务。配置事务时，需要在xml配置文件中引入用于声明事务的tx命名空间(见下页),事务的配置方式有两种：注解方式和基于XML配置方式。

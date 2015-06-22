@@ -9,18 +9,19 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.zxyairings.codelib.spring.PersonService;
 import com.zxyairings.codelib.spring.simulation.SimulateClassPathXMLApplicationContext;
 
-public class SpringTest2 {
+//自动装配
 
+public class SpringTest3 {
+
+	
 	@Test
 	public void instanceSpring() {
 		
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans2.xml");
-		
-//		模拟容器
-//		SimulateClassPathXMLApplicationContext ctx = new SimulateClassPathXMLApplicationContext("beans2.xml");
-		
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans3.xml");
 		PersonService ps = (PersonService)ctx.getBean("personService");
 		ps.save();
 
+
 	}
 }
+ 

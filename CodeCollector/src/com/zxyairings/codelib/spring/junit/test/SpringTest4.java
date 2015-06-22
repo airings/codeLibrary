@@ -4,23 +4,24 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.zxyairings.codelib.spring.PersonService;
 import com.zxyairings.codelib.spring.simulation.SimulateClassPathXMLApplicationContext;
 
-public class SpringTest2 {
+//自动装配
 
+public class SpringTest4 {
+
+	
 	@Test
 	public void instanceSpring() {
-		
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans2.xml");
-		
-//		模拟容器
-//		SimulateClassPathXMLApplicationContext ctx = new SimulateClassPathXMLApplicationContext("beans2.xml");
-		
+		AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("beansAutoScan.xml");
 		PersonService ps = (PersonService)ctx.getBean("personService");
-		ps.save();
-
+		PersonService ps1 = (PersonService)ctx.getBean("personService");
+		System.out.println(ps==ps1);
+		ctx.close();
 	}
 }
+ 

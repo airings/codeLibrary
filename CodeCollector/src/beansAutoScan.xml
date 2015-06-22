@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context    
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+<!-- 
+
+前面的例子我们都是使用XML的bean定义来配置组件。
+在一个稍大的项目中，通常会有上百个组件，如果这些这组件采用xml的bean定义来配置，显然会增加配置文件的体积，查找及维护起来也不太方便。
+spring2.5为我们引入了组件自动扫描机制，他可以在类路径底下寻找标注了@Component、@Service、@Controller、@Repository注解的类，并把这些类纳入进spring容器中管理。
+它的作用和在xml文件中使用bean节点配置组件是一样的。
+
+
+base-package为需要扫描的包(含子包)。
+
+@Service用于标注业务层组件
+@Controller用于标注控制层组件（如struts中的action)
+@Repository用于标注数据访问组件，即DAO组件
+@Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。
+-->
+    
+           <context:component-scan base-package="com.zxyairings.codelib.spring"/>
+</beans>

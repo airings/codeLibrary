@@ -63,5 +63,24 @@ public class SpringTest {
 
 //		fail("Not yet implemented");
 	}
+	
+	@Test
+	public void instanceSpring2() {
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans2.xml");
+		
+//		模拟容器
+//		SimulateClassPathXMLApplicationContext ctx = new SimulateClassPathXMLApplicationContext("beans2.xml");
+		
+		PersonService ps = (PersonService)ctx.getBean("personService");
+		ps.save();
+
+	}
+	
+	@Test
+	public void instanceSpring3(){
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans3.xml");
+		PersonService ps = (PersonService)ctx.getBean("personService");
+		ps.save();
+	}
 
 }
