@@ -32,4 +32,9 @@
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
   	   <property name="dataSource" ref="dataSource"/>
     </bean>
+    <tx:annotation-driven transaction-manager="txManager"/>
+    
+    <bean id="personService" class="com.zxyairings.codelib.spring.jdbc.PersonServiceBean">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 </beans>
