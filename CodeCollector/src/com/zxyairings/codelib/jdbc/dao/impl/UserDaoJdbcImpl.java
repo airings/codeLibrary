@@ -34,11 +34,16 @@ public class UserDaoJdbcImpl implements UserDao {
 		try {
 			conn = JdbcUtils.getConnection();
 			String sql = "insert into user(name,birthday, money) values (?,?,?) ";
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);//这样写可以得到新插入数据行的主键
 			ps.setString(1, user.getName());
 			ps.setDate(2, new java.sql.Date(user.getBirthday().getTime()));
 			ps.setFloat(3, user.getMoney());
 			ps.executeUpdate();
+			
+			rs=ps.getGeneratedKeys();
+			if (rs.next()) {
+				user.setId(rs.getInt(1));//将主键赋给user对象，这样数据库中的user跟java内存中的user对象对应了
+			}
 		} catch (SQLException e) {
 			throw new DaoException(e.getMessage(), e);
 		} finally {

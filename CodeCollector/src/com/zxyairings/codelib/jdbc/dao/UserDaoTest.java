@@ -27,7 +27,8 @@ public class UserDaoTest {
 	 */
 	public static void main(String[] args) {
 
-		test();
+//		test();
+		noDependenceDAO();
 	}
 	//使用配置文件和简单工厂模式来解耦
 	public static void noDependenceDAO() {
@@ -40,6 +41,7 @@ public class UserDaoTest {
 		
 		//create
 		userDao.addUser(user);
+		System.out.println("inserted user id: "+user.getId());
 		
 		//find
 		User u = userDao.findUser(user.getName(), null);
@@ -51,7 +53,7 @@ public class UserDaoTest {
 		userDao.update(u2);
 		
 		//delete
-		User u3 = userDao.getUser(6);
+		User u3 = userDao.getUser(7);
 		userDao.delete(u3);
 
 	}
@@ -69,6 +71,7 @@ public class UserDaoTest {
 		
 		//create
 		userDao.addUser(user);
+		System.out.println("inserted user id: "+user.getId());
 		
 		//find
 		User u = userDao.findUser(user.getName(), null);
@@ -80,7 +83,7 @@ public class UserDaoTest {
 		userDao.update(u2);
 		
 		//delete
-		User u3 = userDao.getUser(6);
+		User u3 = userDao.getUser(7);
 		userDao.delete(u3);
 	}
 

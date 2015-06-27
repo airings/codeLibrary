@@ -10,6 +10,32 @@ public class User {
 	private Date birthday;
 	private float money;
 	
+	public User() {
+
+	}
+
+	public User(String name) {
+		this.name = name;
+	}
+
+	public User(float money) {
+		this.money = money;
+	}
+
+	public void showName() {
+		System.out.println(this.name);
+	}
+	
+	private void test() {
+
+	}
+
+	@Override
+	public String toString() {
+		return "id=" + this.id + " name=" + this.name + " birthday="
+				+ this.birthday + " money=" + this.money;
+	}
+	
 	public int getId() {
 		return id;
 	}
