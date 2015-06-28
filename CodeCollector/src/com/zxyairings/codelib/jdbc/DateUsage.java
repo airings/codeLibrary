@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.zxyairings.codelib.jdbc.util.JdbcUtils;
+
 public class DateUsage {
 	public static void main(String[] args) throws SQLException {
 //		create("name2", new Date(), 500.0f);

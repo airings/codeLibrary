@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.zxyairings.codelib.jdbc.util.JdbcUtils;
+
 /*
  * 
  * 增、删、改用Statement.executeUpdate来完成，返回整数(匹配的记录数)，这类操作相对简单。

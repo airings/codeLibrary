@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.zxyairings.codelib.jdbc.JdbcUtils;
+import com.zxyairings.codelib.jdbc.util.JdbcUtils;
 
 /*
  * 所有事务都有的3个步骤

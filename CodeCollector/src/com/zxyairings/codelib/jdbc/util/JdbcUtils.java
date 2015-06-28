@@ -1,4 +1,4 @@
-package com.zxyairings.codelib.jdbc;
+package com.zxyairings.codelib.jdbc.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,6 +10,14 @@ import java.sql.Statement;
 有两种方式实现工具类
 1.使用静态方法：JdbcUtils
 2.单例模式：JdbcUtilsSingleton
+
+
+现在是使用JdbcUtils来创建连接
+
+以后会是使用MyDataSource来创建连接池，而使用JdbcUtilsMyDataSource来作为统一的借口
+
+MyDataSource是模拟DataSource
+
 */
 
 public final class JdbcUtils {

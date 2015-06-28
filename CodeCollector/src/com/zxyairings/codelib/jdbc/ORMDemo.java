@@ -10,9 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.zxyairings.codelib.jdbc.domain.Bean;
 import com.zxyairings.codelib.jdbc.domain.User;
+import com.zxyairings.codelib.jdbc.util.JdbcUtils;
 
 /*
  * improve ResultSetMetaDataDemo.java

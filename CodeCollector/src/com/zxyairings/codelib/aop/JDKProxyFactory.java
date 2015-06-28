@@ -4,8 +4,9 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+//动态代理
 public class JDKProxyFactory implements InvocationHandler {
-	private Object target;
+	private Object target;//目标对象，被代理的类
 	
 	public Object createProxyInstance(Object target){
 		this.target = target;

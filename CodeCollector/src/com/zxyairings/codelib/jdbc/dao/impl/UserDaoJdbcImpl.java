@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.zxyairings.codelib.jdbc.JdbcUtils;
 import com.zxyairings.codelib.jdbc.dao.DaoException;
 import com.zxyairings.codelib.jdbc.dao.UserDao;
 import com.zxyairings.codelib.jdbc.domain.User;
+import com.zxyairings.codelib.jdbc.util.JdbcUtils;
 
 /*
  * 这里说明了SQLException这种异常该如何处理：

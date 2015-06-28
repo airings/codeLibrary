@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.zxyairings.codelib.jdbc.util.JdbcUtils;
+
 //参数元数据，是针对PreparedStatement和CallableStatement的，因为他们有参数
 //通过 ParameterMetaData可以获得参数信息，但是这些信息不一定准确，不用的数据库厂商有不同的实现
 public class ParameterMetaDataDemo {

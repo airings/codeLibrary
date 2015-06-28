@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.zxyairings.codelib.jdbc.util.JdbcUtils;
+
 //二进制类型的大文件，例如，图片，jar包等
 
 public class BlobDemo {

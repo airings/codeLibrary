@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.zxyairings.codelib.jdbc.util.JdbcUtils;
+
 //如何将大纯文本导入数据库
 
 //java中的String没有大小限制。但是数据库中的varchar是有大小限制

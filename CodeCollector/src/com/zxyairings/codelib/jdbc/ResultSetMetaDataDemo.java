@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zxyairings.codelib.jdbc.util.JdbcUtils;
+
 //结果集的元数据
 //使用metadata方式使得sql执行非常的灵活
 

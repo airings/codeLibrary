@@ -1,4 +1,4 @@
-package com.zxyairings.codelib.jdbc;
+package com.zxyairings.codelib.jdbc.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Savepoint;
 import java.sql.Statement;
 
-import com.zxyairings.codelib.jdbc.JdbcUtils;
+import com.zxyairings.codelib.jdbc.util.JdbcUtils;
 
 /*
  * 当事务中出现问题，我们并不想全部回滚，因为有些步骤仍然是有意义的，我们想回滚到某个点。

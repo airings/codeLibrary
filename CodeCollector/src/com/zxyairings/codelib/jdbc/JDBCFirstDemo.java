@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.zxyairings.codelib.jdbc.util.JdbcUtils;
+
 /*
  * 连接数据的步骤
 	1.注册驱动 (只做一次)

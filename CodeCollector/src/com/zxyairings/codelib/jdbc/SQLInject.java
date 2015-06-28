@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.zxyairings.codelib.jdbc.util.JdbcUtils;
+
 /*
  * 在SQL中包含特殊字符或SQL的关键字(如：' or 1 or ')时Statement将出现不可预料的结果（出现异常或查询的结果不正确），可用PreparedStatement来解决。
  * 
