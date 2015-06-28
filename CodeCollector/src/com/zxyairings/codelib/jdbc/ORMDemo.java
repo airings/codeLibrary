@@ -19,7 +19,23 @@ import com.zxyairings.codelib.jdbc.domain.User;
  * 将数据库的返回结果放入到对象中去
  * 
  * 这个类的目的是了解ORM框架，例如 Hibernate，的实现原理，可能框架的实现更加复杂，但至少是类似的机制。
+ * 
+ResultSetMetaData meta = rs.getMetaData();
+通过ResultSetMetaData可以获得结果有几列、各列名、各列别名、各列类型等。 
+可以将ResultSet放入Map(key:列名 value:列值)。
+
+用反射ResultSetMetaData将查询结果读入对象中（简单的O/RMapping） 
+	1)让SQL语句中列别名和要读入的对象属性名一样；
+	2)通过ResultSetMetaData获得结果列数和列别名；
+	3)通过反射将对象的所有setXxx方法找到;
+	4)将3）找到的方法setXxx和2）找到的列别名进行匹配（即方法中的xxx于列别名相等）；
+	5)由上一步找到的方法和列别名对应关系进行赋值
+	Method.invoke(obj, rs.getObject(columnAliasName));
+ * 
+ * 
  */
+
+
 
 public class ORMDemo {
 
