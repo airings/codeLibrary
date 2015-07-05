@@ -9,6 +9,7 @@ public class User {
 	private String name;
 	private Date birthday;
 	private float money;
+	private Date registDate;
 	
 	public User() {
 
@@ -29,13 +30,13 @@ public class User {
 	private void test() {
 
 	}
-
+	
 	@Override
 	public String toString() {
-		return "id=" + this.id + " name=" + this.name + " birthday="
-				+ this.birthday + " money=" + this.money;
+		return "User [id=" + id + ", name=" + name + ", birthday=" + birthday
+				+ ", money=" + money + ", registDate=" + registDate + "]";
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -66,5 +67,13 @@ public class User {
 
 	public void setMoney(float money) {
 		this.money = money;
+	}
+
+	public Date getRegistDate() {
+		return registDate;
+	}
+
+	public void setRegistDate(Date registDate) {
+		this.registDate = registDate;
 	}
 }

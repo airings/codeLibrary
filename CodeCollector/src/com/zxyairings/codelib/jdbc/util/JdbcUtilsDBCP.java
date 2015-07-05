@@ -24,9 +24,9 @@ import org.apache.commons.dbcp.BasicDataSourceFactory;
  */
 
 public class JdbcUtilsDBCP {
-	private static String url = "jdbc:mysql://localhost:3306/jdbc";
-	private static String user = "root";
-	private static String password = "";
+	private static String url = "jdbc:mysql://localhost:3306/grampus";
+	private static String user = "pfreader";
+	private static String password = "mango1";
 	private static DataSource myDataSource = null;
 
 	private JdbcUtilsDBCP() {

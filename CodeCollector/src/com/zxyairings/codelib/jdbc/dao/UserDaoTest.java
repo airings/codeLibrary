@@ -3,6 +3,7 @@ package com.zxyairings.codelib.jdbc.dao;
 import java.util.Date;
 
 import com.zxyairings.codelib.jdbc.dao.impl.UserDaoJdbcImpl;
+import com.zxyairings.codelib.jdbc.dao.refactor.UserDaoImpl;
 import com.zxyairings.codelib.jdbc.domain.User;
 
 /*
@@ -28,8 +29,24 @@ public class UserDaoTest {
 	public static void main(String[] args) {
 
 //		test();
-		noDependenceDAO();
+//		noDependenceDAO();
+		testAbstractDao();
 	}
+	
+	public static void testAbstractDao(){
+		UserDaoImpl userDao = new UserDaoImpl();
+		
+		User user = new User();
+		user.setBirthday(new Date());
+		user.setName("dao name1");
+		user.setMoney(1000.0f);
+
+		//find
+		User u = userDao.findUser(user.getName(), null);
+		System.out.println(u);
+		
+	}
+	
 	//使用配置文件和简单工厂模式来解耦
 	public static void noDependenceDAO() {
 		UserDao userDao = DaoFactory.getInstance().getUserDao();
