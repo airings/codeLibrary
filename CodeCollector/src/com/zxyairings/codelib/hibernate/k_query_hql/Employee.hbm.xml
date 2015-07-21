@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- 
+	auto-import表示在HQL中写类的简单名称时，是否自动导入当前这个包。
+	即为true时，在HQL中可以写简单名称，表示当前这个类。
+	当为false时，在HQL中就得写全限定名了。
+	默认为true。
+ -->
+<hibernate-mapping package="cn.itcast.k_query_hql" auto-import="true">
+	
+	<class name="Employee" table="employee">
+		<id name="id">
+        	<generator class="native"></generator>
+		</id>
+		<property name="name" type="string" column="name"/>
+		
+		<!-- department属性，表达的是本类与Department的多对一 -->
+		<many-to-one name="department" class="Department" column="departmentId"></many-to-one>
+		
+	</class>
+	
+	<!-- 定义命名的查询 -->
+	<query name="queryByIdRange">
+		<![CDATA[FROM Employee e WHERE e.id >= :idMin AND e.id <= :idMax]]>
+	</query>
+	
+</hibernate-mapping>

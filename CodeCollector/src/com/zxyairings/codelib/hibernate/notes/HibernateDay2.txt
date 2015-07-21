@@ -1,0 +1,109 @@
+Set
+	HashSet 无序，不重复
+
+List
+	有序，可重复
+
+Map
+	键值对
+	HashMap 无序，不重复（以key为准）			重要↑
+-----------------------------------------------
+
+数组
+	
+Bag
+	无序，可重复
+	List
+
+注意：
+使用集合属性时，一定要使用接口，而不能声明为具体的实现类。
+因为经过Session操作后，集合就变成了Hibernate自己的集合实现类。
+
+
+public static void main(String[] args) {
+	// Set<String> set = new HashSet<String>();
+	// Set<String> set = new TreeSet<String>();
+	Set<String> set = new LinkedHashSet<String>();
+
+	set.add("dd"); // 4
+	set.add("cc"); // 3
+	set.add("aa"); // 1
+	set.add("bb"); // 2
+
+	System.out.println(set);
+}
+
+
+sort="unsorted|natural|comparatorClass"
+默认为：unsorted
+
+
+值类型的集合
+	集合元素是普通类型
+实体类型的集合
+	集合元素是另一个实体
+
+
+维护关联关系：
+	对于一对多：
+		就是设置外键列的值。
+	对于多对多：
+		就是插入或删除中间表中的记录。
+
+
+
+双向关联
+单向关联：
+	单向多对一   把一边删掉就可以了，那么只能从一边找到另一边，而不能反过来
+	单向一对多
+	单向多对多
+
+
+
+
+============================
+
+对象的状态：
+
+临时状态：
+	与数据库没有对应，跟Session没有关联。
+	一般是新new出的对象。
+
+持久化状态：
+	对象在Session的管理之中，最终会有对应的数据库记录。
+	特点：
+		1，有OID
+		2，对对象的修改会同步到数据库。
+
+游离状态：
+	数据库中有对应记录，但对象不在Session管理之中。
+	修改此状态对象时数据库不会有变化。
+
+删除状态：
+	执行了delete()后的对象。
+
+
+===============================
+一、操作实体对象的
+	save()
+	update()
+	saveOrUpdate()
+	delete()
+	
+二、操作缓存的
+	clear()
+	evict()
+	flush()
+
+三、查询实体对象的
+	get()
+	load()
+	createQuery()
+	createCriteria()
+
+
+
+		加载方式		返回值		如果数据不存在
+---------------------------------------------------------
+get		立即加载	真实对象或null		返回null
+load	延迟加载	代理对象			抛异常

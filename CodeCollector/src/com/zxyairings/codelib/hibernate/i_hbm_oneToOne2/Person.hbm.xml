@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.zxyairings.codelib.hibernate.i_hbm_oneToOne2">
+	
+	<class name="Person" table="person2">
+		<id name="id">
+        	<generator class="native"></generator>
+		</id>
+		<property name="name"/>
+		
+		<!-- idCard属性，IdCard类型。
+			表达的是本类与IdCard的一对一。
+			采用基于主键的一对一映射方式，本方无外键方。
+		 -->
+		<one-to-one name="idCard" class="IdCard"></one-to-one>
+		
+		
+	</class>
+	
+</hibernate-mapping>

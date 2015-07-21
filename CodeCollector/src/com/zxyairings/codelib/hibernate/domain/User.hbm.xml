@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.zxyairings.codelib.hibernate.domain"> <!-- 持久化类都在这个包下 -->
+	 
+	<class name="User" table="t_user">  <!-- 指定持久化类和表的映射 table可以不写，其默认值是类的简单名称-->
+		<id name="id" type="int" column="id"> <!-- 指定持久化类的OID和表的主键的映射 -->
+            <generator class="native"/> <!-- 指定对象标识符生成器，负责为OID生成唯一标识符 -->
+		</id>
+		<!-- 普通属性：数据库中的基本类型，字符串，日期，数字 -->
+		<property name="name" type="string" column="name" length="20"/>  <!-- 指定持久化类的属性和表的列的映射 -->
+	</class>
+	
+</hibernate-mapping>

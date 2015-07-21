@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.zxyairings.codelib.hibernate.domain"> <!-- 持久化类都在这个包下 -->
+	 
+	<class name="User_collection" table="user">
+		<id name="id">
+        	<generator class="native"></generator>
+		</id>
+		<property name="name"/>
+		
+		<!-- addressSet属性，Set集合 
+			table属性：集合表的名称
+			key子元素：集合外键的列名
+			element子元素：存放集合元素的列的信息
+			sort属性："unsorted|natural|comparatorClass"
+				默认为：unsorted
+				sort 是先查询数据库(不带order by子句)，在内存中对返回的结果进行排序，领域对象要么实现Comparable接口，要么传入Comoparator类。
+				注意这时的Set集合不能是HashSet，因为它不能进行排序，需要是SortedSet的子类才行，如TreeSet。同理，如果使用Map，那就使用TreeMap存放数据。
+				list，Array，Bag不能使用sort属性进行排序，因为它又自己的循序。
+				一般不使用sort，效率比较低，因为要在内存中排序，除非无法使用数据库的order by实现排序。
+			order-by属性：写的是order by 子句，是SQL语句，是操作的集合表。
+				这是在查询数据时指定orderby子句。
+		-->
+		<!-- <set name="addressSet" table="user_addressSet" sort="natural"> -->
+		<set name="addressSet" table="user_addressSet" order-by="address DESC">
+			<key column="userId"></key> <!-- 不用指定外键是什么，Hibernate会自动引用当前主对象的主键 -->
+			<element type="string" column="address"></element>
+		</set>
+		
+		<!-- addressList属性，List集合 
+			list-index：用于存放索引的列
+		-->
+		<list name="addressList" table="user_addressList">
+			<key column="userId"></key>
+			<list-index column="idx"></list-index>
+			<element type="string" column="address"></element>
+		</list>
+		
+		<!-- addressArray属性，数组。与List的映射基本一致 -->
+		<array name="addressArray" table="user_addressArray">
+			<key column="userId"></key>
+			<list-index column="idx"></list-index>
+			<element type="string" column="address"></element>
+		</array>
+		
+		<!-- addressMap属性，Map集合 -->
+		<map name="addressMap" table="user_addressMap">
+			<key column="userId"></key>
+			<map-key type="string" column="key_"></map-key>
+			<element type="string" column="address"></element>
+		</map>
+		
+		<!-- addressBag属性，Bag集合：无序，可重复。与Set集合的映射基本一致 -->
+		<bag name="addressBag" table="user_addressBag">
+			<key column="userId"></key>
+			<element type="string" column="address"></element>
+		</bag>
+		
+	</class>
+	
+</hibernate-mapping>

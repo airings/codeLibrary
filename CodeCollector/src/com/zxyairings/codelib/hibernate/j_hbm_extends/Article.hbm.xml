@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.zxyairings.codelib.hibernate.j_hbm_extends">
+	
+	<!-- 
+		discriminator-value属性：
+			用于鉴别是哪个类的一个值，表示这个值就是这个类。
+			如果不写，默认为类的全限定名。
+	 -->
+	<class name="Article" table="article" discriminator-value="Aticle">
+		<id name="id">
+        	<generator class="native"/>
+		</id>
+		
+		<!-- 用于鉴别是什么类型的一个列 -->
+		<discriminator type="string" column="class_"></discriminator>
+		
+		<property name="title"/>
+		<property name="content" type="text" length="10000"/>
+		<property name="postTime" type="timestamp"/>
+		
+		
+		<!-- 子类：Topic -->
+		<subclass name="Topic" discriminator-value="Topic">
+			<property name="type"></property>
+		</subclass>
+		
+		
+		<!-- 子类：Reply -->
+		<subclass name="Reply" discriminator-value="Reply">
+			<property name="floor"></property>
+		</subclass>
+		
+	</class>
+	
+</hibernate-mapping>

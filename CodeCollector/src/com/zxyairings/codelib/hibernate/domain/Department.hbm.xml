@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.zxyairings.codelib.hibernate.domain">
+	
+	<class name="Department" table="department">
+		<id name="id">
+        	<generator class="native"></generator>
+		</id>
+		<property name="name"/>
+		
+		<!-- employees属性，Set集合，表达的是本类与Employee的一对多 
+			class属性：关联的实体类型
+			key子元素：对方表中的外键列（多方的那个表）
+			table属性：不用指定，因为class属性已经指定过了
+			
+			inverse属性:
+				默认为false，表示本方维护关联关系。
+				如果为true，表示本方不维护关联关系。
+				只是影响是否能设置外键列的值（设成有效值或是null值），对获取信息没有影响。
+				实体类型的集合映射中可以使用（只有一对多、多对多）。
+				
+			cascade属性：
+				默认为none，代表不级联。
+				级联是指操作主对象时，对关联的对象也做相同的操作。
+				可设为：delete, save-update, all, none ...
+				一般是多对1，多对多的关联关系不适用级联
+				1对多，1对1的可以使用级联
+		<set name="employees" cascade="all">
+			<key column="departmentId"></key>
+			<one-to-many class="Employee"/>
+		</set>
+		-->
+		
+	</class>
+	
+</hibernate-mapping>

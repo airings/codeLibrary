@@ -1,0 +1,181 @@
+BS  ,   CS
+------
+
+
+View	表示层						View 
+	Action/sevlet/xx	数据
+	Jsp					模板
+-----------------------------------
+Service	业务层
+Dao		数据访问层
+-----
+MySQL, Oracle, SqlServer, Db2, ...
+
+
+MySQLDaoImpl
+OracleDaoImpl
+
+
+MVC
+
+
+JDBC
+SQL
+
+==============================
+t_user表
+	id		int  主键  自动增长
+	name	varchar(20)
+
+User对象
+	int id;
+	String name;
+
+
+mysql> create database hibernate_20120328 default character set utf8;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use hibernate_20120328;
+Database changed
+
+mysql> create table t_user( id int primary key auto_increment, name varchar(20) );
+Query OK, 0 rows affected (0.13 sec)
+
+
+
+struts.xml
+hibernate.cfg.xml
+xxx.hbm.xml
+
+
+全限定名  cn.itcast.domain.User
+简单名称  User
+
+
+
+假设共有25条记录，每页显示10条，则共3页。
+
+		firstResult		maxResults
+----------------------------------------
+第1页		0				10
+第2页		10				10
+第3页		20				10
+
+
+total / pageSize
+total % pageSize 
+
+
+
+Session
+
+
+SQL
+	查询的是表和表中的字段。
+	不区分大小写
+
+HQL
+	Hibernate Query Language
+	与SQL相似
+	查询的是对象和对象中的属性。
+	关键字不区分大小写，但类名与属性名区分大小写。
+
+
+==========================================================
+
+
+API
+	1，API简介。
+	2，Session中的方法。
+	3，查询：HQL与Criteria
+
+配置：
+	1，主配置文件
+	2，映射文件
+		映射基础
+		普通属性
+		主键
+		集合属性
+		关联关系
+			一对多/多对一
+			多对多
+			一对一
+		继承结构
+
+
+-----------------------------------
+-- API简介
+
+Configuration	配置
+	configure()	
+	configure(String resource)
+	addResource(String resource)	导入一个指定位置的映射文件
+	addClass(Class clazz)			导入与指定类同一个包中的以类名为前缀，后缀为.hbm.xml的映射文件
+	buildSessionFactory()
+
+SessionFactory	Session工厂
+	openSession()
+	getCurrentSession()
+	close()
+
+Session			很重要的一个对象
+	操作对象的方法
+	save(Object)
+	update(Object)
+	delete(Object)
+	查询的方法
+	createQuery(String)	--> Query
+	createCriteria(Class)
+	管理事务的方法
+	beginTransaction() --> Transaction
+	getTransaction()   --> Transaction	获取当前Session中关联的事务对象
+	其他的方法
+	...
+
+Transaction		事务
+	commit()
+	rollback()
+	wasCommitted()
+	wasRolledBack()
+
+Query			查询
+	list()			查询一个结果集合。
+	uniqueResult()	查询一个唯一的结果，如果没有结果，则返回null，如果结果有多个，就抛异常。
+	...
+
+
+--------------------------------
+
+Hibernate主配置文件
+
+1，配置的key前面的hibernate.前缀 可以有，也可以没有。如hibernate.dialect或dialect都可以。
+2，按作用可分为三类：
+	1，数据库信息
+		<property ...>
+		方言、JdbcUrl、驱动、用户名、密码
+	2，导入映射文件
+		<mapping ...>
+	3，其他配置
+		<property ...>
+		show_sql		显示生成的SQL语句
+		format_sql		格式化生成的SQL语句
+		hbm2ddl.auto	自动生成表结构
+		hibernate.hbm2ddl.auto
+生成表结构的两种方式：
+	1，hbm2ddl.auto
+	2，使用SchemaExport工具类
+注意：只能建表，不能建库
+
+
+==============
+主键：
+	如果是数字，建议使用包装类型。
+
+identity
+sequence
+hilo
+native
+assigned
+uuid
+foreign
+...

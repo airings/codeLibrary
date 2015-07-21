@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.zxyairings.codelib.hibernate.domain">
+	
+	<!-- name属性：哪个类
+		 table属性：对应哪个表，如果不写，默认的表名就是类的简单名称
+	-->
+	<class name="User2" table="t_user2">
+		<id name="id" type="int" column="id">
+            <generator class="native"/>
+		</id>
+		<!-- 普通的属性（数据库中的基本类型，如字符串、日期、数字等） 
+			name属性：对象中的属性名，必须要有。
+			type属性：类型，如果不写，Hibernate会自动检测。
+				可以写Java中类的全名。java.lang.String
+				或是写hibernate类型。string --- 推荐
+			column属性：对应表中的列名，如果没有，默认为属性名。
+			length属性：长度，不是所有的类型都有长度属性，比如varchar有，但int没有，如果不写默认为255
+			not-null属性：非空约束，默认为false
+		-->
+		<!-- 
+		<property name="name"/>
+		 -->
+		<property name="name" type="string" column="name" length="20" not-null="true"/>
+
+		<property name="age" type="int" column="age_"/>
+		
+		<property name="birthday" type="date" column="birthday_"/>
+		
+		<!-- 当列表与关键字冲突时，可以通过column属性指定一个其他的列名；或是使用反引号包围起来。建议使用第一种处理方式。
+			
+			指定使用text类型(大文本类型)时，最好再指定length，以确定生成的SQL类型是能够存放指定数量的字符的。因为有好几种大文本类型，大小有所不同。
+			
+		<property name="desc">
+			<column name="desc_" length="5000" sql-type="text"/> 第二种方法写property，这样就可以加上sql的类型，不建议使用，因为与数据库耦合。
+		</property>		
+		 -->
+		<property name="desc" type="text" length="5000" column="`desc`" ></property>
+		
+		<!-- 头像，二进制类型，最好指定长度 100k -->
+		<property name="photo" type="binary" length="102400"></property>
+		
+	</class>
+	
+</hibernate-mapping>
+

@@ -1,0 +1,56 @@
+Hibernate3.6
+持久层的框架
+
+添加环境：
+	1，jar包
+	2，配置文件
+		hibernate.cfg.xml
+		xxx.hbm.xml
+	
+使用Hibernate实现CRUD操作
+	// --- 准备
+	Configuration cfg = new Configuration().configure(); // hibernate.cfg.xml
+	SessionFactory sessionFactory = cfg.buildSessionFactory(); // 只需要一个
+
+	// --- 模板代码
+	Session session = sessionFactory.openSession();
+	Transaction tx = null;
+	try{
+		tx = session.beginTransaction();
+		// 操作
+		tx.commit();
+	}catch(Exception e){
+		tx.rollback();
+		throw e;
+	}finally{
+		session.close();
+	}
+
+	// --- 操作
+	Session中的方法：
+		save(Object)		--> insert into ..
+		update(Object)		--> update ..
+		saveOrUpdate(Object)
+		delete(Object)		--> delete ..
+		get(Class, id)		--> select ...
+		createQuery(hql)	--> select ..
+
+
+主配置文件
+	1，数据库信息
+		方言、URL、驱动、用户名、密码
+	2，导入映射文件
+	3，其他配置
+		show_sql = true
+		hbm2ddl.auto = update
+	
+映射配置：
+	映射基础
+		类 -- 表
+		属性 -- 列
+	映射普通属性
+		name, type, column, length, not-null, ...
+	映射主键
+		主键生成略：native, uuid
+
+====================================================================

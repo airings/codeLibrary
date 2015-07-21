@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.zxyairings.codelib.hibernate.domain">
+	
+	<class name="Teacher" table="teacher">
+		<id name="id">
+        	<generator class="native"></generator>
+		</id>
+		<property name="name" type="string" column="name"/>
+		
+		<!-- students属性，Set集合。
+			表达的是本类与Student的多对多。
+			中间表teacher_student一定要与Student.hbm.xml中的中间表名称一致
+		 -->
+		<set name="students" table="teacher_student" inverse="true">
+			<key column="teacherId"></key>
+			<many-to-many class="Student" column="studentId"></many-to-many>
+		</set>
+		
+	</class>
+	
+</hibernate-mapping>

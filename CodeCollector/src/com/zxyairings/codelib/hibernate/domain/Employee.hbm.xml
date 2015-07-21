@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.zxyairings.codelib.hibernate.domain">
+	
+	<class name="Employee" table="employee">
+		<id name="id">
+        	<generator class="native"></generator>
+		</id>
+		<property name="name" type="string" column="name"/>
+		
+		<!-- department属性，表达的是本类与Department的多对一 
+			class属性：关联的实体类型
+			column属性：外键列（引用关联对象的表的主键）
+		-->
+		<many-to-one name="department" class="Department" column="departmentId"></many-to-one>
+		
+	</class>
+	
+</hibernate-mapping>

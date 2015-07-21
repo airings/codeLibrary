@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.zxyairings.codelib.hibernate.domain">
+
+	<class name="User3" table="t_user3">
+
+		<!-- id元素用于映射主键。 子元素generator是用于指定主键生成策略的。 -->
+		<id name="id">
+			
+			<!-- identity：使用数据库的自己的主键生成策略:自动增长，不是所有数据库都支持，比如oracle就不支持，oracle使用sequence
+            <generator class="identity"/>
+			-->
+
+			<!-- sequence：在 DB2，PostgreSQL，Oracle，SAP DB，McKoi 中使用序列（sequence）来实现自动增长，在使用Oracle数据库时可以使用这一个 
+			<generator class="sequence"/> -->
+
+			<!-- hilo，使用高低位算法生成主键值。 只需要一张额外表，所有的数据都支持。 
+			<generator class="hilo"> <param 
+				name="table">hi_value</param> <param name="column">next_value</param> <param 
+				name="max_lo">100</param> </generator> -->
+
+			<!-- 不是一种具体的主键生成策略，根据底层数据库的能力选择 identity、sequence 或者 hilo中的一个。一般会选这个，常用。
+			<generator class="native"></generator> -->
+
+			<!-- increment：由Hibernate维护的自动增长。 先查询当前最大的id值，再加1使用 不推荐使用，因为在多线程下会问题。注意记住老师是如何做多线程实验的。 
+				<generator class="increment"></generator> -->
+			
+			<!-- 以上的都是生成数字类型的主键值 -->
+			
+			<!-- assigned：手工指定主键值 可以指定任何类型
+			<generator class="assigned"></generator>
+			-->
+
+			<!-- uuid：由Hibernate自动生成UUID并指定为主键值。用于主键是String类型时。-->
+			<generator class="uuid"></generator> 
+			
+		</id>
+
+		<property name="name" />
+	</class>
+
+</hibernate-mapping>

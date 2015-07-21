@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory name="foo">
+		<!-- 配置数据库信息 hibernate. 加不加都可以--> 
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="connection.url">jdbc:mysql:///hibernate_20120328</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.username">airings</property>
+		<property name="hibernate.connection.password">mango1</property>
+
+		<!-- 其他配置 -->
+		
+		<property name="hibernate.show_sql">true</property> <!-- 显示生成的sql语句 -->
+		<property name="hibernate.format_sql">false</property>
+		<!-- 
+			自动建表：由于有hbm配置文件，里面有数据库的完整信息，因此，Hibernate可以根据这个hbm配置文件来自动创建表
+			create：先删除，再创建
+			update：如果表不存在就创建，不一样就更新，一样就什么都不做。开发环境下常用，用于测试。
+			create-drop：初始化时创建表(先删除再创建的创建)，SessionFactory执行close()时删除表。
+			validate：验证表结构是否一致，如果不一致，就抛异常。production环境下常用
+		-->
+		<property name="hbm2ddl.auto">update</property>
+
+		<!-- 导入映射文件 
+		<mapping resource="com/zxyairings/codelib/hibernate/domain/User.hbm.xml"/>
+		-->
+	
+	
+	
+	</session-factory>
+</hibernate-configuration>
