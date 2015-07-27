@@ -1,9 +1,13 @@
-package com.zxyairings.codelib.network;
+package com.zxyairings.codelib.network.tcp;
 
 import java.io.*;
 import java.net.*;
 
 //自定义客户端，发给tomcat
+
+//3，第24天课程06 -- 简单讲了HTTP协议的请求消息头   MyIE.java
+//客户端：自定义。(命令行)
+//服务端：Tomcat服务器。
 
 class MyIE 
 {

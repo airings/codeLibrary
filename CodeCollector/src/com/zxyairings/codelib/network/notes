@@ -155,3 +155,34 @@ B/S:Browser/Server
 2，对于软件升级，只要考虑服务端即可。
 
 弊端：所有的程序都运行在服务端，客户端的浏览器毕竟解析能力较弱。对游戏等。
+
+
+
+1，第24天课程04 -- SelfDefinedServerDemo.java
+客户端：浏览器/telnet
+服务端：自定义。
+
+2，第24天课程05
+客户端：浏览器。
+服务端：Tomcat服务器。Tomcat里面其实封装了ServerSocket，原理跟上面我们自己写的服务端是一样的。
+
+3，第24天课程06-08 -- 06简单讲了HTTP协议的请求消息头   MyIE.java MyIEByGUI.java
+客户端：自定义。(图形界面)
+服务端：Tomcat服务器。
+
+第24天课程08讲了URL的两个作用：
+1.解析URL
+2.建立应用层连接，此连接包装了socket，它也有流，底层是tcp的socket流，但是由于他在应用层，输入流中的数据没有请求消息头
+
+第24天课程09：
+1.SocketAddress
+	创建Socket对象时，可以使用默认构造器创建Socket对象，之后使用connec(SockeAddress)建立连接。
+	SocketAddress 是包装了ip地址和port的对象。
+2.ServerSocket
+	创建此对象时，还可以指定一个参数backlog，它指的是最大同时连接数，也就是最大的同时可在线的连接数，超过这个数，客户端会连接失败。
+	
+第24天课程10：
+域名解析：想要将主机名翻译成ip地址，需要域名解析。DNS
+如果是访问localhost那么它是怎么翻译成ip地址的呢？其实映射关系就在本机上: /etc/hosts
+也就是说映射关系会先找本机上的hosts的内容，找不到会去找公网上的DNS再解析
+ 

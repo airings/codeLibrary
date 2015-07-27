@@ -1,5 +1,5 @@
 package com.zxyairings.codelib.network;
-
+//可以用来建立连接 注意这个连接是在应用层，所以它的输入流中没有请求消息头
 import java.net.*;
 import java.io.*;
 class  URLConnectionDemo
@@ -12,18 +12,12 @@ class  URLConnectionDemo
 		URLConnection conn = url.openConnection();
 		System.out.println(conn);
 		
-		InputStream in = conn.getInputStream();
+		InputStream in = conn.getInputStream(); 
 
 		byte[] buf = new byte[1024];
 
 		int len = in.read(buf);
 
 		System.out.println(new String(buf,0,len));
-
-
-
-
-
-
 	}
 }

@@ -1,4 +1,4 @@
-package com.zxyairings.codelib.network;
+package com.zxyairings.codelib.network.tcp;
 
 /*
 
@@ -17,7 +17,7 @@ package com.zxyairings.codelib.network;
 1，建立服务。
 2，获取键盘录入。
 3，将数据发给服务端。
-4，后去服务端返回的大写数据。
+4，读取服务端返回的大写数据。
 5，结束，关资源。
 
 都是文本数据，可以使用字符流进行操作，同时提高效率，加入缓冲。
@@ -111,6 +111,7 @@ class  TransServer
 		//BufferedWriter bufOut = 
 			//new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
 
+		// 使用PrintWriter更方便，是上面的简化
 		PrintWriter out = new PrintWriter(s.getOutputStream(),true);
 
 		String line = null;
@@ -119,7 +120,7 @@ class  TransServer
 
 			System.out.println(line);
 
-			out.println(line.toUpperCase());
+			out.println(line.toUpperCase());//使用PrintWriter后，简化下面三句话
 //			bufOut.write(line.toUpperCase());
 //			bufOut.newLine();//为了给客户点的bufferReader结束标记
 //			bufOut.flush();//真正的完成写入操作

@@ -1,4 +1,4 @@
-package com.zxyairings.codelib.network;
+package com.zxyairings.codelib.network.tcp;
 
 /*
 需求：上传图片。

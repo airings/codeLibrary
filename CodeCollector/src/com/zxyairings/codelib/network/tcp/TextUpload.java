@@ -1,4 +1,4 @@
-package com.zxyairings.codelib.network;
+package com.zxyairings.codelib.network.tcp;
 
 
 import java.io.*;
@@ -7,8 +7,8 @@ import java.net.*;
 /*
  * 还会出现无法结束的问题，原因是服务端的readLine方法没有读到结束标记
  * 有两种解决方法：
- * 1. 使用自定义的结束标记，比如"over"，比较好的是时间戳
- * 2. 使用Socket方法shutdownOutput
+ * 1. 使用自定义的结束标记，比如"over"，比较好的是时间戳；但是这些都比较麻烦。
+ * 2. 使用Socket方法shutdownOutput；这种方式比较标准。
  * 
  */
 
@@ -21,7 +21,8 @@ class  TextClient
 		BufferedReader bufr = 
 			new BufferedReader(new FileReader("IPDemo.java"));
 
-//		DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+//		时间戳结束标记
+//		DataOutputStream dos = new DataOutputStream(s.getOutputStream());//基本类型流对象
 //		long time = System.currentTimeMillis();
 //		dos.writeLong(time);
 
@@ -35,8 +36,8 @@ class  TextClient
 			out.println(line);
 		}
 
-//		out.println("over");//结束标记
-//		out.println(time);
+//		out.println("over");//自定义结束标记
+//		out.println(time);//自定义结束标记时间戳
 		s.shutdownOutput();//关闭客户端的输出流。相当于给流中加入一个结束标记-1.
 
 		

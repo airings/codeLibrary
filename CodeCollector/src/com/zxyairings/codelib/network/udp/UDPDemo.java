@@ -1,4 +1,4 @@
-package com.zxyairings.codelib.network;
+package com.zxyairings.codelib.network.udp;
 
 import java.net.*;
 
@@ -8,7 +8,7 @@ public class UDPDemo {
 
 //从发送端和接收端都有端口号可以看出，其实端口号就是网络应用程序的数字标示，用来标示在同一ip地址上不同的应用程序。
 
-
+// 学习socket主要是学习这些流程，每一步都干嘛，具体的细节代码可以查文档
 
 /*
 需求：通过udp传输方式，将一段文字数据发送出去。，

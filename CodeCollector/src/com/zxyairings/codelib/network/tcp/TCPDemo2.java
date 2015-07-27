@@ -1,4 +1,4 @@
-package com.zxyairings.codelib.network;
+package com.zxyairings.codelib.network.tcp;
 
 import java.io.*;
 import java.net.*;
@@ -47,7 +47,7 @@ class TcpServer2
 	{
 		ServerSocket ss = new ServerSocket(10004);
 
-		Socket s = ss.accept();
+		Socket s = ss.accept();//阻塞式方法
 
 		String ip = s.getInetAddress().getHostAddress();
 		System.out.println(ip+"....connected");

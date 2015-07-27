@@ -1,4 +1,4 @@
-package com.zxyairings.codelib.network;
+package com.zxyairings.codelib.network.tcp;
 
 
 /*
@@ -17,7 +17,8 @@ package com.zxyairings.codelib.network;
 客户端，
 通过查阅socket对象，发现在该对象建立时，就可以去连接指定主机。
 因为tcp是面向连接的。所以在建立socket服务时，
-就要有服务端存在，并连接成功。形成通路后，在该通道进行数据的传输。
+就要有服务端存在，并连接成功。形成通路后，就可以获取socket流中的输入流和输出流，
+我们就是利用这两个封装好的输入/输出流，在该通道进行数据的传输。
 
 
 需求：给服务端发送给一个文本数据。
@@ -47,6 +48,11 @@ class  TcpClient
 
 
 /*
+ * 服务端可以服务多个客户端的访问，它是如何做到互不影响的？
+ * 		服务端没有流对象，谁访问服务端，服务端就需要先得到这个客户端的对象，
+ * 		然后利用这个在服务侧的客户端对象的输入流/输出流来跟客户端进行通信，
+ * 		这样每个访问服务端的客户端在服务侧都有相对应的客户端对象与之通信，这样就互不影响了。
+ * 
 需求：定义端点接收数据并打印在控制台上。
 
 服务端:
@@ -77,7 +83,7 @@ class  TcpServer
 		System.out.println(ip+".....connected");
 
 		//获取客户端发送过来的数据，那么要使用客户端对象的读取流来读取数据。
-		InputStream in = s.getInputStream();
+		InputStream in = s.getInputStream();//这是个源，但是比较特殊，是个网络流
 		
 		byte[] buf = new byte[1024];
 		int len = in.read(buf);

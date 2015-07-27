@@ -1,10 +1,11 @@
-package com.zxyairings.codelib.network;
+package com.zxyairings.codelib.network.tcp;
 
 /*
+ * 这个实例，说明了多个客户端并发的访问服务端的情况。这时就需要服务端程序能够多线程化，即每个客户端提出请求，服务端就会创建一个线程来响应。这样服务端就可以提供并发访问服务。
+ * 这个就是对UploadPic的并发访问改进。所有的服务器都是这个原理，一定要学好
+ * 
+ * 
 需求：上传图片。
-
-
-
 */
 /*
 客户端。
@@ -18,7 +19,7 @@ package com.zxyairings.codelib.network;
 
 import java.io.*;
 import java.net.*;
-class  PicClient
+class  PicClient2
 {
 	public static void main(String[] args)throws Exception 
 	{
@@ -100,6 +101,9 @@ class  PicClient
 如何定义线程呢？
 
 只要明确了每一个客户端要在服务端执行的代码即可。将该代码存入run方法中。
+
+所有的服务器都是这个原理，一定要学好
+
 */
 
 class PicThread implements Runnable
@@ -155,7 +159,7 @@ class PicThread implements Runnable
 
 
 
-class  PicServer
+class  PicServerMultiThread
 {
 	public static void main(String[] args) throws Exception
 	{

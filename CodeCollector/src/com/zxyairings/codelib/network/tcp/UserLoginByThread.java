@@ -1,6 +1,8 @@
-package com.zxyairings.codelib.network;
+package com.zxyairings.codelib.network.tcp;
 
 /*
+ * 客户端并发登陆
+ * 
 客户端通过键盘录入用户名。
 服务端对这个用户名进行校验。
 
@@ -34,14 +36,14 @@ class  LoginClient
 		for(int x=0; x<3; x++)
 		{
 			String line = bufr.readLine();
-			if(line==null)
+			if(line==null)//ctrl+c就可以把null发给服务端
 				break;
 			out.println(line);
 
 			String info = bufIn.readLine();
 			System.out.println("info:"+info);
 			if(info.contains("欢迎"))
-				break;
+				break; 
 
 		}
 
@@ -78,6 +80,7 @@ class UserThread implements Runnable
 
 				String line = null;
 
+				//要的是循环判断后的结果，那么必然是在循环外判断，故需要一个标记来记录循环判断的结果
 				boolean flag = false;
 				while((line=bufr.readLine())!=null)
 				{

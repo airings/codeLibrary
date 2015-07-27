@@ -1,10 +1,14 @@
-package com.zxyairings.codelib.network;
+package com.zxyairings.codelib.network.tcp;
+
+//3，第24天课程07 --  MyIEByGUI.java  使用socket建立连接
+//客户端：自定义。(图形界面)
+//服务端：Tomcat服务器。
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
-class  MyIEByGUI2
+class  MyIEByGUI
 {
 	private Frame f;
 	private TextField tf;
@@ -16,7 +20,7 @@ class  MyIEByGUI2
 	private Button okBut;
 
 
-	MyIEByGUI2()
+	MyIEByGUI()
 	{
 		init();
 	}
@@ -116,24 +120,54 @@ class  MyIEByGUI2
 	{
 
 		ta.setText("");
-		String urlPath = tf.getText();//http://192.168.1.254:8080/myweb/demo.html
+		String url = tf.getText();//http://192.168.1.254:8080/myweb/demo.html
 		
-		URL url = new URL(urlPath);
-
-		URLConnection conn = url.openConnection();
+		//解析URL，下面这种方式很麻烦，应该使用URL类来解析，见URLDemo.java
 		
-		InputStream in = conn.getInputStream();
+		int index1 = url.indexOf("//")+2;
 
-		byte[] buf = new byte[1024];
+		int index2 = url.indexOf("/",index1);
 
-		int len = in.read(buf);
 
-		ta.setText(new String(buf,0,len));
+
+		String str = url.substring(index1,index2);
+		String[] arr = str.split(":");
+		String host = arr[0];
+		int port = Integer.parseInt(arr[1]);
+
+		String path = url.substring(index2);
+		//ta.setText(str+"...."+path);
+
+
+		Socket s = new Socket(host,port);
+		
+		PrintWriter out = new PrintWriter(s.getOutputStream(),true);
+
+		out.println("GET "+path+" HTTP/1.1");
+		out.println("Accept: */*");
+		out.println("Accept-Language: zh-cn");
+		out.println("Host: 192.168.1.254:11000");
+		out.println("Connection: closed");
+
+		out.println();
+		out.println();
+
+		BufferedReader bufr = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+		String line = null;
+
+		while((line=bufr.readLine())!=null)
+		{
+			ta.append(line+"\r\n");
+		}
+
+		s.close();
 
 	}
 
 	public static void main(String[] args) 
 	{
-		new MyIEByGUI2();
+		new MyIEByGUI();
 	}
 }
+

@@ -1,5 +1,9 @@
 package com.zxyairings.codelib.network;
 
+/*
+ * URL 除了可以解析url的作用，还可以建立连接，它封装了socket连接，详细见URLConnectionDemo.java
+ */
+
 import java.net.*;
 class URLDemo 
 {
@@ -15,7 +19,7 @@ class URLDemo
 		System.out.println("getFile() :"+url.getFile());
 		System.out.println("getQuery() :"+url.getQuery());
 
-		/*int port = getPort();
+		/*int port = getPort();没有指定端口号，会返回-1，这时一般会指定一个默认端口80
 		if(port==-1)
 			port = 80;
 

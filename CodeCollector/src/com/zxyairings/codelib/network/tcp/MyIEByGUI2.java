@@ -1,10 +1,10 @@
-package com.zxyairings.codelib.network;
-
+package com.zxyairings.codelib.network.tcp;
+//使用URL建立连接
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
-class  MyIEByGUI
+class  MyIEByGUI2
 {
 	private Frame f;
 	private TextField tf;
@@ -16,7 +16,7 @@ class  MyIEByGUI
 	private Button okBut;
 
 
-	MyIEByGUI()
+	MyIEByGUI2()
 	{
 		init();
 	}
@@ -112,56 +112,29 @@ class  MyIEByGUI
 		});
 	}
 
+	//使用URL建立连接，注意这个连接是在应用层，所以它的输入流中没有请求消息头
 	private void showDir()throws Exception
 	{
 
 		ta.setText("");
-		String url = tf.getText();//http://192.168.1.254:8080/myweb/demo.html
+		String urlPath = tf.getText();//http://192.168.1.254:8080/myweb/demo.html
 		
-		int index1 = url.indexOf("//")+2;
+		URL url = new URL(urlPath);
 
-		int index2 = url.indexOf("/",index1);
-
-
-
-		String str = url.substring(index1,index2);
-		String[] arr = str.split(":");
-		String host = arr[0];
-		int port = Integer.parseInt(arr[1]);
-
-		String path = url.substring(index2);
-		//ta.setText(str+"...."+path);
-
-
-		Socket s = new Socket(host,port);
+		URLConnection conn = url.openConnection();
 		
-		PrintWriter out = new PrintWriter(s.getOutputStream(),true);
+		InputStream in = conn.getInputStream();
 
-		out.println("GET "+path+" HTTP/1.1");
-		out.println("Accept: */*");
-		out.println("Accept-Language: zh-cn");
-		out.println("Host: 192.168.1.254:11000");
-		out.println("Connection: closed");
+		byte[] buf = new byte[1024];
 
-		out.println();
-		out.println();
+		int len = in.read(buf);
 
-		BufferedReader bufr = new BufferedReader(new InputStreamReader(s.getInputStream()));
-
-		String line = null;
-
-		while((line=bufr.readLine())!=null)
-		{
-			ta.append(line+"\r\n");
-		}
-
-		s.close();
+		ta.setText(new String(buf,0,len));
 
 	}
 
 	public static void main(String[] args) 
 	{
-		new MyIEByGUI();
+		new MyIEByGUI2();
 	}
 }
-
