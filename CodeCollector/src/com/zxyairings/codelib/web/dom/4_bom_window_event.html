@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+        <title>Untitled Document</title>
+    </head>
+    <body>
+        
+        <script type="text/javascript">
+            /*
+             // 在Dom对象卸载前立即触发，即在关闭浏览器窗口前先调用onbeforeunload再调用onunload
+             onunload = function(){
+                alert("onunload run");
+            }
+            // 浏览器完成页面的装载后立即出发该事件
+            onload = function(){
+                alert("onload run");
+            }
+            // 页面将要被卸载前触发
+            onbeforeunload = function(){
+                alert("onbeforeunload run");
+            }
+            */
+            onload = function(){
+                window.status = "啊！，加载完毕啦";
+            }
+        </script>
+    </body>
+</html>
