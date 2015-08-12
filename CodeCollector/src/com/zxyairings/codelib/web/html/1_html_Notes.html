@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--  
+Html是通过标签来定义语言，代码都是有标签所组成。
+Html代码由 <html>开始</html>结束。它里面由头部分<head></head>和体部分<body></body>两部分组成
+头部分是给html页面增加一些辅助或者属性信息，它里面的内容会最先加载。
+体部分是真正存放页面数据的地方。
+HTML5：它之前如果想要实现某种现实效果非常困难，HTML5对这些效果进行封装，通过使用标签就可以实现某种效果。
+* 想要对被标签修饰的内容进行更丰富的操作，就用到了标签中的属性，通过对属性值的改变，增加了更多的效果选择
+* 属性与属性值之间用“=”连接，属性值可以用双引号或者单引号或者不容引号。一般都会用双引号，或者公司规定书写规范。
+* 格式:
+	<标签名 属性名=‘属性值’> 数据内容 </标签名>
+	<标签名 属性名='属性值' />
+
+-->
+操作思想：为了方便地操作数据，都需要对数据进行不同标签的封装，通过标签中的属性对封装的数据进行操作。<br>
+标签就相当于一个<font color = 'red' size='6'>容器</font>。对容器的数据进行操作，就是在不断的改变容器的属性值 <br> 
+<hr/>
+转移字符:&;
+c&lt;d
+<hr/>
+    表单要想向服务端提交数据，每个表单的组件都必须指定2个属性：name value, 服务端获得的是键值对，将name作为键，将value作为值，
+<!--
+        如果要给服务端提交数据，表单中的组件必须有name和value属性。
+        用于给服务端获取数据方便。
+        -->
+        <form action="" method="get"> 
+            输入名称：<input type="text" name="user" value="" /><br/>
+            输入密码：<input type="password" name="psw"  /><br/> 
+            选择性别：<input type="radio" name="sex" value="nan" />男
+                     <input type="radio" name="sex" value="nv" checked="checked" />女<br/>
+            选择技术：<input type="checkbox" name="tech" value="java"/>JAVA
+                     <input type="checkbox" name="tech" value="html"/>HTML
+                     <input type="checkbox" name="tech" value="css"/>CSS<br/>
+            选择文件：<input type="file" name="file"/><br/>       
+            一个图片：<input type="image" src="11.jpg"/><br/>
+            <!--数据不需要客户端知道，但是可以将其提交服务端。-->
+            隐藏组件：<input type="hidden" name="myke" value="myvalue"/><br/>     
+            一个按钮：<input type="button" value="有个按钮" onclick="alert('有个阿牛')" /><br/>
+            
+            
+            <!-- 下拉菜单 -->
+            <select name="country">
+                    <option value="none">--选择国家--</option>
+                    <option value="usa">美国</option>
+                    <option value="en">英国</option>
+                    <option value="cn" selected="selected">中国</option>
+            </select>
+            
+            <textarea name="text"></textarea>
+            <br/>
+                     
+            <input type="reset" value="清除数据"/><input type="submit" value="提交数据" />
+        </form>
+        
+
+
+
+    
+        <!-- 
+        GET提交和POST提交的区别？
+        1,
+        get提交，提交的信息都显示在地址栏中。
+        post提交，提交的信息不显示地址栏中。
+        
+        2，
+        get提交，对于敏感的数据信息不安全。
+        post提交，对于敏感信息安全。
+        
+        3，
+        get提交，对于大数据不行，因为地址栏存储体积有限。
+        post提交，可以提交大体积数据。 
+        
+        4，
+        get提交，将信息封装到了请求消息的请求行中。
+        post提交，将信息封装到了请求体中。
+        
+        在服务端的一个区别。
+        如果出现将中文提交到tomcat服务器，服务器默认会用iso8859-1进行解码会出现乱码，
+        通过iso8859-1进行编码，再用指定的中文码表解码。即可。
+        这种方式对get提交和post提交都有效。 
+        
+        但是对于post提交方式提交的中文，还有另一种解决办法，就是直接使用服务端一个对象
+        request对象的setCharacterEncoding方法直接设置指定的中文码表就可以将中文数据解析出来。
+        这个方法只对请求体中的数据进行解码。 
+        
+        
+        综上所述：表单提交，建议使用post。
+        
+        
+        
+        和服务端交互的三种方式：
+        1，地址栏输入url地址。get
+        2，超链接。 get
+        3，表单。 get 和  post
+        
+
+        
+        如果在客户端进行增强型的校验(只要有一个组件内容是错误，是无法继续提交的。只有全对才可以提交)
+        问，服务端数据后，还需要校验吗？
+        需要，为了安全性。
+        
+        如果服务端做了增强型的校验，客户端还需要校验吗？
+        需要，因为要提高用户的上网体验效果，减轻服务器端的压力。
+
+        -->
+</body>
+</html>

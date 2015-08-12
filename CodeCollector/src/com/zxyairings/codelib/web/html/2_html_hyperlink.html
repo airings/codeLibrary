@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+		<title>Untitled Document</title>
+	</head>
+	<body>
+		<!--
+		超链接：
+		作用：连接资源。
+		当有了href属性才有了点击效果。
+		href属性的值的不同，解析的方式也不一样。
+		
+		如果在该值中没有指定过任何协议。
+		解析时，是按照默认的协议来解析该值的。默认协议是file协议。
+		
+		
+		
+		-->
+		<a href="http://www.sohu.com.cn" target="_blank">新浪网站</a>
+		<hr/>
+		<a href="imgs/1.jpg">美女图片</a>
+		<hr/>
+		<a href="mailto:abs@sina.com">联系我们</a>
+		<hr/>
+		
+	<a href="http://www.xunlei.com/movies/fczlm.rmvb">复仇者联盟</a><br/>
+	<a href="thunder://wertyuioasdfghjklwertyuio==">复仇者联盟</a>
+	
+	<!-- 去掉超链接的默认时间，加入自定义的事件alert -->
+	<a href="javascript:void(0)" onclick="alert('我弹')">这是一个超链接</a>
+	
+	
+			<!--
+		定位标记。
+		专业术语：锚
+		-->
+		<a name=top>顶部位置</a>
+		<hr/>
+		<img src="111.jpg" height=900 width=400 border=10/>
+		<hr/>
+		<a name=center>中间位置</a>
+		<hr/>
+		
+		<img src="111.jpg" height=900 width=400 border=10/>
+		<a href="#top">回到顶部位置</a>
+		<a href="#center">回到中间位置</a>
+		
+	</body>
+</html>
