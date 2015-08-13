@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<!--
+css是层叠样式表(Cascading Style Sheets)用来定义网页的显示效果，可以解决html代码对样式定义的重复，
+提高了后期样式代码的可维护性，并增强了网页的显示效果功能。
+简单一句话：CSS将网页内容和显示样式进行了分离，提高了显示功能，降低了耦合性，提高了可扩展性。 
+    
+    
+CSS和HTML在网页中相结合的4中方式：
+    1，style属性方式：每一个html标签中都有一个style样式属性。该属性的值就是css代码。css代码中间用;分隔
+    	注：该方式比较灵活，适合局部修改。但是对于多个相同标签的同一样式定义比较麻烦，
+    
+    2，style标签方式：使用style标签的方式。 一般都定义在head标签中，这样就可以先加载css样式，这样读到相应的标签，那么效果就可以马上加载到这个标签上。
+    	注：该方式可以对单个页面的样式进行同一设置，但对于局部不够灵活。
+    
+    3.导入方式：将style标签中的css代码放入到一个css文件中，然后使用import导入到相应的html页面的style标签中即可。
+    	注：url后好后面必须要用分好结束。如果导入进来的样式与本页面定义的样式重复，以本页面定义样式为准
+    	
+    4.连接方式：通过head标签中link标签来实现，前提也是先要有一个定义好的css文件。
+    	注：可以通过多个link标签链接进来多个css文件。重复要哪个是以最后链接进来的css样式为准。
+    
+*** 第3、4种方式很好体现了CSS将网页内容和显示样式进行了分离。但是第3种方式在某些游览器下不起作用，一般使用第4中方式
+    	
+优先级：
+	由上到下，由外到内，优先级由低到高。或者一句话，以后加载的为准。但是也存在特殊情况
+	标签选择器<类选择器<id选择器<style属性
+
+css代码格式：如果一个属性有多个属性值，那么多个属性值用空格隔开。
+	选择器名称 {
+		属性名：属性值; 
+		属性名：属性值;
+		...
+	}
+
+选择器： 就是制定css要作用的标签，那个标签的名称就是选择器，意为：选择那个容器
+选择器有三种：
+	1.html标签名选择器，使用的就是html的标签名
+	
+	2.class选择器，其实使用的是标签中的class属性。class属性是专门设计用来给css样式加载的html属性。使用.
+		注：class不仅可以用来给相同标签的不同class的样式设定，还可以用于不同标签的相同class的样式设定
+		
+	3.id选择器，其实使用的是标签中的id属性。 使用#
+		注：多个标签同样可以定义相同的id值，但是对于Javascript对标签元素的获取就会出错。所以要养成习惯，确保id值得唯一性对于以后的数据库设计也有好处。
+		   通常ID的取值在页面中是唯一的，因为该属性除了给css使用，还可以被js使用。id通常都是为了去标示页面中一些特定区域使用的。
+		
+每一个标签都定义了class属性和id属性，用于对标签进行识别，方便对标签进行操作。在定义标签中，多个标签的class属性值可以相同，而id值要唯一。
+
+选择器优先级：标签选择器<类选择器<id选择器<style属性
+越少数，优先级越高。
+
+扩展选择器：
+	1.关联选择器
+	2.组合选择器：多个选择器用,分开
+	3.伪元素选择器：其实就是在html中预先定义号的一些选择器，称为伪元素。是CSS的术语。
+		格式2种：标签名:伪元素.类名    
+			   标签名.类名:伪元素
+		
+
+-->
+
+<!-- 方式4 -->
+<!--link rel="stylesheet" href="1.css" type="text/css" /-->
+
+
+<style type="text/css"> <!-- 方式2 -->
+@import url(import.css); 
+/*@import url(div.css); <!-- 方式3 -->
+/*@import url(span.css); <!-- 方式3 -->
+/*@import url(p.css); <!-- 方式3 -->
+
+div{ //标签选择器
+		background-color:#09F;
+		color:#FFF;
+}
+div.haha{ //class选择器: 只选择div标签中的class为haha的标签
+		background-color:#09F;
+		color:#FFF;
+}
+.haha{ //class选择器：选择全部标签中的class为哈哈的标签
+	background-color:#FF3;
+	color:#0C0;
+}*/
+/*预定样式，实现动态的加载。
+.hehe{
+	background-color:#C93;
+	color:#00F;
+}*/
+/*
+#qq{通常ID的取值在页面中是唯一的，因为该属性除了给css使用，还可以被js使用。id通常都是为了去标示页面中一些特定区域使用的。
+	background-color:#000;
+	color:#FFF;
+}
+*//*
+span b{关联选择器 选择器中的选择器。意为：span标签中的b标签
+	background-color:#09F;
+	color:#FFF;
+}
+*/
+
+/*组合选择器*/
+/*
+.haha,div b{对多种选择器进行相同样式定义
+	background-color:#000;
+	color:#C00;
+}
+*/
+/*
+伪元素
+
+超链接的状态。
+
+*/
+
+/*未访问*/
+a:link{
+	background-color:#06F;
+	color:#FFF;
+	text-decoration:none;
+	font-size:18px;
+}
+
+
+/*
+鼠标悬停
+*/
+a:hover{
+	background-color:#FFF;
+	color:#F00;
+	font-size:24px;
+}
+
+
+/*点击效果*/ 
+a:active{
+	background-color:#000;
+	color:#FFF;
+	font-size:36px;
+}
+
+/*访问后效果*/
+
+a:visited{
+		background-color:#FF9;
+		color:#000;
+		text-decoration:line-through;
+}
+
+
+p:first-letter{
+		font-size:36px;
+		color:#F00;
+}
+/* 伪元素可以跟其他的元素相结合 */
+div:hover{
+		background-color:#F00;
+		color:#FFF;
+}
+
+input:focus{
+	background-color:#09F;
+}
+
+
+#qq{
+	float:left;
+}
+/*
+设计的顺序：
+L  V  H  A
+
+*/
+</style>
+
+</head>
+
+<body>
+
+
+<input type="text" />
+<input type="text" />
+<hr />
+
+<a href="http://www.sina.com.cn" target="_blank">伪元素选择器演示</a>
+
+<hr />
+
+
+
+		<div style="background-color:#06F;color:#F00">这是一个div区域1</div> <!-- 方式1 -->
+		<div id="qq">这是一个div<b>区域</b>1</div>
+		<div class="haha" id="qq">这是一个div区域2</div>
+		<span>span<b>区域</b>1</span>
+		<span class="haha">span区域2</span>
+		<p>这是一个段落1</p>
+		<p class="haha">这是一个段落2</p>
+
+</body>
+</html>

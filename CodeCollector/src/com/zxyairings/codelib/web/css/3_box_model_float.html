@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<!-- 
+	div+CSS 是目前比较流行的布局方案
+	以前我们使用table来进行布局，而使用div+css，盒子模型，使布局更加灵活。
+
+盒子模型：使用div来封装数据，将这个div称为盒子。或者任何的区域标签都可成为盒子。
+	border：边框
+	padding：内边距，即盒子中的文本内容距离盒子边框的距离
+	margin：外边距，即盒子的边框距离这个盒子外面其他标签(区域)上下左右的距离
+
+盒子模型有两种定位技术：
+	1.漂浮 float
+	2.position
+		a.absolute: 脱离文档流
+		b.relative：不脱离文档流，还占着原来的位置，但是显示的位置变化了。
+		注：位置是相对于设置了position值得父区域，如果父区域没有设置position，那么就相对于<body>标签。
+	
+	
+ -->
+<style type="text/css">  
+/*
+body{
+	margin:0px; //<body>标签的外边距设为0，这样，body里的内容将顶格html页面。
+}
+*/
+div{
+	border:#09F solid 1px;
+	height:100px;
+	width:200px;/**/
+
+}
+
+#div_1{
+	/*border-bottom:#F60 2px dashed;*/
+	background-color:#F90;
+	/*padding:20px 100px 200px 300px;上 右 下 左
+	margin:0px;*/
+	float:left;
+}
+#div_2{
+	background-color:#0CF;
+	margin:50px;
+	float:left;
+	
+}
+#div_3{
+	background-color:#3F0;8
+	clear:left;/**/
+	
+}
+	
+</style>
+
+</head>
+
+<body>
+
+<div id="div_1">
+第一个盒子11第一个盒子11
+</div>
+<div id="div_2">
+第二个盒子22
+</div>
+<div id="div_3">
+第三个盒子33
+</div>
+
+
+
+</body>
+</html>
