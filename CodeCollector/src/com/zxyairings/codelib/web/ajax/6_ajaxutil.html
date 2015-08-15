@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My JSP 'json3.jsp' starting page</title>
+<script type="text/javascript" src="ajaxutil.js"></script>
+
+<script type="text/javascript">
+window.onload = function() {
+	var btn = document.getElementById("btn");
+	btn.onclick = function() {
+		/*
+		1. ajax
+		*/
+		ajax(
+			{
+				url:"/AServlet",
+				type:"json",
+				callback:function(data) {
+					document.getElementById("h3").innerHTML = data.name + ", " + data.age + ", " + data.sex;
+				}
+			}
+		);
+	};
+};
+</script>
+  </head>
+  
+  <body>
+<%-- 点击按钮后，把服务器响应的数据显示到h3元素中 --%>
+<button id="btn">点击这里</button>
+<h1>显示自己封装的ajax小工具</h1>
+<h3 id="h3"></h3>
+  </body>
+</html>

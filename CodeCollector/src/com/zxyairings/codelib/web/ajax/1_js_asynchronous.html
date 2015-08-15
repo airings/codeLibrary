@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+	<!--
+		Ajax的异步并不是它原创的，它是利用了JS的异步特性。
+		Ajax也利用JS达到局部刷新的功能。
+		
+		这个例子就演示了如何使用JS达到局部刷新的目的。
+	-->
+<script type="text/javascript">
+window.onload = function() {//在文档加载完成后马上执行！
+	//得到btn元素
+	var btn = document.getElementById("btn");
+	// 给btn的click事件注册监听
+	btn.onclick = function() {//在按按钮被点击时执行！
+		// 获取h1元素对应的DOM对象
+		var h1 = document.getElementById("h1");
+		// 给h1添加内容
+		h1.innerHTML = "Hello JS!!!";
+	};
+};
+</script>
+  </head>
+  
+  <body>
+<button id="btn">点击这里</button>
+<h1 id="h1"></h1>
+  </body>
+</html>
